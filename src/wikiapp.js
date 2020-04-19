@@ -5,8 +5,8 @@ class WikiApp extends React.Component {
         this.state = {
             rp: 5,
             pt: [],
-            renderdone: false,
         };
+        this.createRandomPages();
     };
     async createRandomPages() {
         var pageurls = 'https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&list=random&rnlimit=' + this.state.rp;
@@ -18,29 +18,28 @@ class WikiApp extends React.Component {
         {
             pagestitles[i] = pages[i].title;
         }
-        this.setState(
-            {
+        this.setState( (prevState) => 
+        ({
                 pt: pagestitles,
-                renderdone: true}
+            })
         );
+        return true;
     }
-//    handleRefresh(newrp)
-//    {
-//        this.setState ({
-//            rp: newrp,
-//        });
-//    }
     handleRefresh()
     {
         let emptypages = [];
-        this.setState( {
+        this.setState((prevState) =>  ({
             pt: emptypages,
-            renderdone: false,
             rp: 5,
-        });
+        }));
+        this.createRandomPages();
+    }
+    shouldComponentUpdate(nextProps, nextState)
+    {
+        if(this.state.pt.length) return false;
+        return true;
     }
     render() {
-        if(!this.state.renderdone) this.createRandomPages();
         const pages = this.state.pt;
         const list = pages.map((title, pindex) => 
         {
