@@ -18,7 +18,7 @@ class WikiApp extends React.Component {
         {
             pagestitles[i] = pages[i].title;
         }
-        this.setState( (prevState) => 
+        this.setState((prevState) => 
         ({
                 pt: pagestitles,
             })
