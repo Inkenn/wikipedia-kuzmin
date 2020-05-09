@@ -20,7 +20,6 @@ class WikiApp extends React.Component {
     const response = await fetch(pageurls);
     return response;
   }
-
   componentDidMount() {
     this.createRandomPages();
   }
