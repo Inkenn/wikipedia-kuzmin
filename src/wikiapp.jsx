@@ -24,6 +24,8 @@ class WikiApp extends React.Component {
     this.createRandomPages();
   }
 
+
+  
   async createRandomPages() {
     const response = await this.getFetch();
     const trashpages = await response.json();
