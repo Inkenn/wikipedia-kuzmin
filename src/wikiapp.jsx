@@ -15,14 +15,14 @@ class WikiApp extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.createRandomPages();
-  }
-
   async getFetch() {
     const pageurls = 'https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&list=random&rnlimit=5';
     const response = await fetch(pageurls);
     return response;
+  }
+
+  componentDidMount() {
+    this.createRandomPages();
   }
 
   async createRandomPages() {
